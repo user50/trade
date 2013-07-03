@@ -21,6 +21,15 @@ public class FinancialInstrument
   @OneToMany(cascade = CascadeType.ALL)
   List<Bar> bars = new ArrayList<Bar>();
 
+  public FinancialInstrument( String name )
+  {
+    this.name = name;
+  }
+
+  public FinancialInstrument()
+  {
+  }
+
   public Integer getId()
   {
     return id;
