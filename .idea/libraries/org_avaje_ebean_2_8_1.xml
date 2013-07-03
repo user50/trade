@@ -1,0 +1,21 @@
+<component name="libraryTable">
+  <library name="org.avaje:ebean:2.8.1" type="repository">
+    <properties maven-id="org.avaje:ebean:2.8.1" />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/ebean-2.8.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/persistence-api-1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jta-1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/servlet-api-2.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jaxb-api-2.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/stax-api-1.0-2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/activation-1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/ant-1.7.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/ant-launcher-1.7.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/joda-time-1.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/scala-library-2.10.0-M6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/maven-plugin-api-2.2.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
