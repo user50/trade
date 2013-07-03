@@ -3,6 +3,7 @@ package com.trade;
 import com.avaje.ebean.Ebean;
 import com.trade.domain.Bar;
 import com.trade.domain.FinancialInstrument;
+import com.trade.domain.StrategyType;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -14,6 +15,8 @@ public class Main
   {
     FinancialInstrument instrument = new FinancialInstrument();
     instrument.setName( "EURUSD" );
+    instrument.setSpread( 2 );
+    instrument.setPips( 4 );
 
     Bar bar = new Bar();
     bar.setOpen( 1.20 );
@@ -27,6 +30,13 @@ public class Main
     bar.setInstrument( instrument );
 
     Ebean.save( instrument );
-    Ebean.update( bar );
+
+    StrategyType strategyType = new StrategyType();
+
+    strategyType.setName( StrategyType.StrategyTypeName.dynamicGammaPoisson );
+
+    Ebean.save( strategyType );
+
+    StrategyType foundStrategyType = Ebean.find( StrategyType.class ).findUnique();
   }
 }

@@ -1,7 +1,9 @@
 package com.trade.domain;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Bar
@@ -18,8 +20,11 @@ public class Bar
   Double close;
   Integer volume;
 
-  @ManyToOne(optional = false)
+  @ManyToOne
   FinancialInstrument instrument;
+
+  @OneToMany(cascade = CascadeType.ALL)
+  List<Operation> operations = new ArrayList<Operation>(  );
 
   public Integer getId()
   {
@@ -99,5 +104,15 @@ public class Bar
   public void setInstrument( FinancialInstrument instrument )
   {
     this.instrument = instrument;
+  }
+
+  public List<Operation> getOperations()
+  {
+    return operations;
+  }
+
+  public void setOperations( List<Operation> operations )
+  {
+    this.operations = operations;
   }
 }

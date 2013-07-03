@@ -3,6 +3,7 @@ package com.trade.domain;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 public class FinancialInstrument
@@ -12,10 +13,13 @@ public class FinancialInstrument
   @GeneratedValue(strategy = GenerationType.AUTO)
   Integer id;
 
+  Integer spread;
+  Integer pips;
+
   String name;
 
   @OneToMany(cascade = CascadeType.ALL)
-  ArrayList<Bar> bars;
+  List<Bar> bars = new ArrayList<Bar>();
 
   public Integer getId()
   {
@@ -37,14 +41,34 @@ public class FinancialInstrument
     this.name = name;
   }
 
-  public ArrayList<Bar> getBars()
+  public List<Bar> getBars()
   {
     return bars;
   }
 
-  public void setBars( ArrayList<Bar> bars )
+  public void setBars( List<Bar> bars )
   {
     this.bars = bars;
+  }
+
+  public Integer getSpread()
+  {
+    return spread;
+  }
+
+  public void setSpread( Integer spread )
+  {
+    this.spread = spread;
+  }
+
+  public Integer getPips()
+  {
+    return pips;
+  }
+
+  public void setPips( Integer pips )
+  {
+    this.pips = pips;
   }
 
   public void add(Bar bar)
