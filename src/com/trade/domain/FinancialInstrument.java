@@ -19,7 +19,7 @@ public class FinancialInstrument
   String name;
 
   @OneToMany(cascade = CascadeType.ALL)
-  List<Bar> bars = new ArrayList<Bar>();
+  List<Bar> bars;
 
   public FinancialInstrument( String name )
   {

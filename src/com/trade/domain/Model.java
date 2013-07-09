@@ -13,6 +13,7 @@ public abstract class Model
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Integer id;
 
+  @OneToMany(cascade = CascadeType.ALL)
   private List<Operation> operations = new ArrayList<Operation>(  );
 
   public List<Operation> getOperations()
