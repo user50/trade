@@ -17,7 +17,7 @@ public class Operation
   OperationType operation;
 
   @ManyToOne
-  Strategy strategy;
+  Model strategy;
 
   @ManyToOne
   Bar bar;
@@ -42,15 +42,15 @@ public class Operation
     this.operation = operation;
   }
 
-//  public Strategy getStrategy()
-//  {
-//    return strategy;
-//  }
-//
-//  public void setStrategy( Strategy strategy )
-//  {
-//    this.strategy = strategy;
-//  }
+  public Model getStrategy()
+  {
+    return strategy;
+  }
+
+  public void setStrategy( Model strategy )
+  {
+    this.strategy = strategy;
+  }
 
   public Bar getBar()
   {

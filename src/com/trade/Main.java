@@ -1,12 +1,9 @@
 package com.trade;
 
 import com.avaje.ebean.Ebean;
-import com.trade.domain.Bar;
-import com.trade.domain.FinancialInstrument;
-import com.trade.domain.StrategyType;
+import com.trade.domain.*;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Main
@@ -31,12 +28,15 @@ public class Main
 
     Ebean.save( instrument );
 
-    StrategyType strategyType = new StrategyType();
+    DynamicGammaPoisson gammaPoisson = new DynamicGammaPoisson();
 
-    strategyType.setName( StrategyType.StrategyTypeName.dynamicGammaPoisson );
+    gammaPoisson.setAlpha( 0.05 );
+    gammaPoisson.setSign( -1 );
+    Ebean.save( gammaPoisson );
 
-    Ebean.save( strategyType );
+    SimpleMovingAverage movingAverage = new SimpleMovingAverage();
+    movingAverage.setAverageCount( 20 );
+    Ebean.save( movingAverage );
 
-    StrategyType foundStrategyType = Ebean.find( StrategyType.class ).findUnique();
   }
 }
