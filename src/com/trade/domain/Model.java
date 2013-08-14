@@ -5,25 +5,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Inheritance(strategy= InheritanceType.TABLE_PER_CLASS)
-@DiscriminatorColumn(discriminatorType= DiscriminatorType.CHAR)
-public abstract class Model
+public class Model
 {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Integer id;
 
   @OneToMany(cascade = CascadeType.ALL)
-  private List<Operation> operations = new ArrayList<Operation>(  );
+  private List<Indicator> indicators = new ArrayList<Indicator>(  );
 
-  public List<Operation> getOperations()
+  @OneToMany(cascade = CascadeType.ALL)
+  private List<Parameter> parameters = new ArrayList<Parameter>(  );
+
+  @ManyToOne
+  private ModelType type;
+
+  public List<Indicator> getIndicators()
   {
-    return operations;
+    return indicators;
   }
 
-  public void setOperations( List<Operation> operations )
+  public void setIndicators( List<Indicator> indicators )
   {
-    this.operations = operations;
+    this.indicators = indicators;
   }
 
   public Integer getId()
@@ -34,5 +38,35 @@ public abstract class Model
   public void setId( Integer id )
   {
     this.id = id;
+  }
+
+  public List<Parameter> getParameters()
+  {
+    return parameters;
+  }
+
+  public void setParameters( List<Parameter> parameters )
+  {
+    this.parameters = parameters;
+  }
+
+  public ModelType getType()
+  {
+    return type;
+  }
+
+  public void setType( ModelType type )
+  {
+    this.type = type;
+  }
+
+  public void add(Parameter parameter)
+  {
+    parameters.add( parameter );
+  }
+
+  public void add(Indicator indicator)
+  {
+    indicators.add( indicator );
   }
 }

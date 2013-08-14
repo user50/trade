@@ -15,6 +15,7 @@ public class FinancialInstrument
 
   Integer spread;
   Integer pips;
+  Integer volumeMultiplier;
 
   String name;
 
@@ -72,12 +73,22 @@ public class FinancialInstrument
 
   public Integer getPips()
   {
-    return pips;
+    return pips == null ? 4 : pips;
   }
 
   public void setPips( Integer pips )
   {
     this.pips = pips;
+  }
+
+  public Integer getVolumeMultiplier()
+  {
+    return volumeMultiplier;
+  }
+
+  public void setVolumeMultiplier( Integer volumeMultiplier )
+  {
+    this.volumeMultiplier = volumeMultiplier;
   }
 
   public void add(Bar bar)

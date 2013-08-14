@@ -24,7 +24,7 @@ public class Bar
   FinancialInstrument instrument;
 
   @OneToMany(cascade = CascadeType.ALL)
-  List<Operation> operations = new ArrayList<Operation>(  );
+  List<Indicator> indicators = new ArrayList<Indicator>(  );
 
   public Integer getId()
   {
@@ -106,13 +106,13 @@ public class Bar
     this.instrument = instrument;
   }
 
-  public List<Operation> getOperations()
+  public List<Indicator> getIndicators()
   {
-    return operations;
+    return indicators;
   }
 
-  public void setOperations( List<Operation> operations )
+  public void setIndicators( List<Indicator> indicators )
   {
-    this.operations = operations;
+    this.indicators = indicators;
   }
 }
