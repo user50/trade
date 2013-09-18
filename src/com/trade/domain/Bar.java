@@ -1,5 +1,7 @@
 package com.trade.domain;
 
+import com.avaje.ebean.Ebean;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -114,5 +116,10 @@ public class Bar
   public void setIndicators( List<Indicator> indicators )
   {
     this.indicators = indicators;
+  }
+
+  public static List<Bar> get(int finInstrumentId )
+  {
+    return Ebean.find( Bar.class ).where().eq( "instrument_id", finInstrumentId ).setOrderBy( "date" ).findList();
   }
 }

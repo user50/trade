@@ -15,6 +15,7 @@ public class Main
 {
   public static void main( String[] args ) throws ParseException, IOException
   {
+
     new CSVImportService().importAllTimeSeries();
 
     Model model = DynamicGammaPoisson.createDynamicGammaPoissonModel( 0.5,0.01,0.0001 );
@@ -24,9 +25,6 @@ public class Main
     financialInstrument.setPips( 5 );
     financialInstrument.setVolumeMultiplier( 10 );
     Ebean.save( financialInstrument );
-
-    List<Bar> bars = Ebean.find( Bar.class ).fetch( "instrument" ).where().eq( "instrument.name","EURUSD" ).setOrderBy( "date" ).findList();
-    financialInstrument.setBars( bars );
 
     DynamicGammaPoisson.calculateIndicator( financialInstrument, model );
 

@@ -8,7 +8,7 @@ public class DynamicGammaPoisson
   public static void calculateIndicator(FinancialInstrument instrument, Model model)
   {
     Values values = new Values( getStartMean( model ), getStartDispersion( model ) );
-    for( Bar bar : instrument.getBars() )
+    for( Bar bar : Bar.get( instrument.getId() ) )
     {
       int totalCount = bar.getVolume() * instrument.getVolumeMultiplier();
       int delta = (int) ((bar.getClose() - bar.getOpen()) * Math.pow( 10.0, instrument.getPips() ));
