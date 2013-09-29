@@ -16,6 +16,18 @@
       <root url="jar://$PROJECT_DIR$/lib/maven-plugin-api-2.2.1.jar!/" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/lib/ebean-2.8.1-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/persistence-api-1.0-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jta-1.1-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/servlet-api-2.4-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jaxb-api-2.1-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/stax-api-1.0-2-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/activation-1.1-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/ant-1.7.0-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/joda-time-1.6-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/scala-library-2.10.0-M6-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/maven-plugin-api-2.2.1-sources.jar!/" />
+    </SOURCES>
   </library>
 </component>

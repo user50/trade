@@ -22,9 +22,11 @@ public class CSVImportService
   private final static String EMPTY_STRING = "";
   private final static String FINANCIAL_INSTRUMENT_FOLDER = "currencies";
 
+
+
   public static void main( String[] args ) throws IOException
   {
-    new CSVImportService().importAllTimeSeries();
+    new CSVImportService().importAllTimeSeriesByBuffering();
   }
 
   public void importAllTimeSeries() throws IOException
@@ -35,6 +37,15 @@ public class CSVImportService
       importTimeSeries( file );
     }
 
+  }
+
+  public void importAllTimeSeriesByBuffering() throws FileNotFoundException
+  {
+    File instrumentsFolder = new File( FINANCIAL_INSTRUMENT_FOLDER );
+    for( File file : instrumentsFolder.listFiles() )
+    {
+      importTimeSeriesByBuffering( file );
+    }
   }
 
   public void importTimeSeries(File instrumentFile) throws IOException
@@ -49,6 +60,37 @@ public class CSVImportService
 
     Ebean.save( instrument );
   }
+
+  public void importTimeSeriesByBuffering(File instrumentFile) throws FileNotFoundException
+  {
+    String instrumentName = instrumentFile.getName().replace( FILE_EXTENSION, EMPTY_STRING );
+
+    FinancialInstrument instrument = Ebean.find( FinancialInstrument.class ).where().eq( "name", instrumentName ).findUnique();
+    if( instrument == null )
+    {
+      instrument = new FinancialInstrument(instrumentName);
+      Ebean.save( instrument );
+    }
+
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat( "yyyy-MM-dd HH:mm:ss" );
+
+    Iterator<Bar> barIterator = getCSVReader( instrumentFile ).iterator();
+    StringBuilder update = new StringBuilder( "INSERT INTO `bar` ( `date`, `open`, `high`, `low`, `close`, `volume`, `instrument_id`) VALUES");
+    while( barIterator.hasNext() )
+    {
+      Bar bar = barIterator.next();
+      update.append( " ( '" ).append( simpleDateFormat.format( bar.getDate() ) ).append( "','" ).append( bar.getOpen() ).append( "','" )
+              .append( bar.getHigh() ).append( "','" ).append( bar.getLow() ).append( "','" )
+              .append( bar.getClose() ).append( "','" ).append( bar.getVolume() ).append( "','" )
+              .append( instrument.getId() ).append( "')" );
+
+      if( barIterator.hasNext() )
+        update.append( "," );
+    }
+
+    Ebean.createSqlUpdate( update.toString() ).execute();
+  }
+
 
   private Iterator<Bar> getBarIterator(File instrumentFile) throws FileNotFoundException
   {
